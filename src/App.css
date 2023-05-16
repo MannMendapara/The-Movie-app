@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,77 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.navigoter{
+  height: 5rem;
+  display: flex;
+  justify-content: left;
+}
+
+.banner{
+  width: 100vw;
+  height: 68vh;
+  position: relative;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
+  color: aliceblue;
+}
+
+.banner-img{
+  height: 68vh;
+  width: 100vw;
+}
+
+.banner-title{
+  color: red;
+  position: absolute;
+  top: 18rem;
+  left: 1.5rem;
+}
+
+.banner-text{
+  color: aliceblue;
+  position: absolute;
+  top: 20.5rem;
+  left: 1.5rem;
+  overflow: hidden;
+}
+
+.movie-cnt{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.movie-card{
+  width: 20vw;
+  margin: 1rem;
+  color:red;
+}
+
+@media screen and (max-width:400px) {
+  .banner{
+    height: 40vh;
+  }
+
+  .banner-img{
+    height: 40vh;
+  }
+
+  .banner-title{
+    color:red;
+    position: absolute;
+    top: 8rem;
+    left: 15px;
+  } 
+
+  .banner-text{
+    color:white;
+    position: absolute;
+    top: 10rem;
+    left: 15px;
+  }
+
 }
