@@ -39,6 +39,66 @@ let movies = [
     name: "The Kerela story",
     url:" ",
     desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
+  },
+  {
+    name: "The Kerela story",
+    url:" ",
+    desc: " ",
   }
 ];
 export default class Movies extends Component {
@@ -56,23 +116,32 @@ export default class Movies extends Component {
             return (
             <div className="card movie-card">
               <img
-                style={{
-                  height:"40vh",
-                  width:"20vw"
-                }}
                 src={movieObj.url}
                 className="card-img-top movie-img"
                 alt=""
               />
+              <div style={{display:"flex", justifyContent:"center"}}>
               <h3 className="card-title movie-title">{movieObj.name}</h3>
+              </div>
               {/* <p className="card-text movie-text">{movieObj.desc}</p> */}
-              <div className="btn-wrapper">
-              <a href=" " className="btn btn-primary"> Go somewhere </a>
+              <div className="btn-wrapper text-center">
+              <a href=" " className="btn btn-primary text-center"> favorite </a>
               </div>
             </div>
             )
           })
         )}
+        </div>
+        <div className="pagenavigator">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href=" ">Previous</a></li>
+              <li class="page-item"><a class="page-link" href=" ">1</a></li>
+              <li class="page-item"><a class="page-link" href=" ">2</a></li>
+              <li class="page-item"><a class="page-link" href=" ">3</a></li>
+              <li class="page-item"><a class="page-link" href=" ">Next</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
     );

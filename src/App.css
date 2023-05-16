@@ -37,34 +37,36 @@
   }
 } */
 
-.navigoter{
+.navigoter {
   height: 5rem;
   display: flex;
   justify-content: left;
 }
 
-.banner{
+.banner {
   width: 100vw;
   height: 68vh;
   position: relative;
   margin-top: 1vh;
   margin-bottom: 3vh;
   color: aliceblue;
+  margin-left: .5rem;
+  margin-right: .5rem;
 }
 
-.banner-img{
+.banner-img {
   height: 68vh;
   width: 100vw;
 }
 
-.banner-title{
+.banner-title {
   color: red;
   position: absolute;
   top: 18rem;
   left: 1.5rem;
 }
 
-.banner-text{
+.banner-text {
   color: aliceblue;
   position: absolute;
   top: 20.5rem;
@@ -72,40 +74,132 @@
   overflow: hidden;
 }
 
-.movie-cnt{
+.movie-cnt {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 1rem;
 }
 
-.movie-card{
+.movie-card {
   width: 20vw;
-  margin: 1rem;
-  color:red;
+  margin: .6rem;
+  color: red;
 }
 
+.movie-img {
+  height: 40vh;
+  width: 20vw;
+}
+
+.movie-title {
+  position: absolute;
+  /* left: 3.7rem; */
+  top: 13rem;
+}
+
+.btn-wrapper{
+  display:flex;
+  width:100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  margin-bottom: 5px;
+  width: 50%;
+  font-size: 1rem;
+  position: absolute;
+  /* left: 3.7rem; */
+  top: 16rem;
+}
+
+.pagenavigator{
+  display:flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
 @media screen and (max-width:400px) {
-  .banner{
+
+  .navigoter{
+    height: 3.5rem;
+    display: flex;
+    justify-content: left;
+    font-size: 20px;
+  }
+
+  .banner {
+    height: 40vh;
+    margin-left: .1rem;
+    margin-right: .1rem;
+  }
+
+  .banner-img {
     height: 40vh;
   }
 
-  .banner-img{
-    height: 40vh;
-  }
-
-  .banner-title{
-    color:red;
+  .banner-title {
+    color: red;
     position: absolute;
     top: 8rem;
     left: 15px;
-  } 
+    font-size: 20px;
+  }
 
-  .banner-text{
-    color:white;
+  .banner-text {
+    color: white;
     position: absolute;
     top: 10rem;
     left: 15px;
+    font-size: 10px;
   }
 
+  .movie-cnt {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: .1rem;
+  }
+
+  .movie-card {
+    width: 40vw;
+    height: 30vh;
+    margin: .2rem;
+    color: red;
+  }
+
+  .movie-img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .movie-title {
+    position: absolute;
+    /* left: 3.7rem; */
+    top: 8rem;
+    font-size: 15px;
+  }
+
+  .btn-wrapper{
+    display:flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn {
+    margin-bottom: 1px;
+    width: 50%;
+    height: 16%;
+    position: absolute;
+    /* left: 3.7rem; */
+    top: 9.8rem;
+    font-size: 13px;
+  }
+
+  .pagenavigator{
+    margin-top: .4rem;
+  }
 }
