@@ -58,13 +58,20 @@ export default class Movies extends Component {
       currentpage: this.state.currentpage - 1
     })
   }else{
-    this.setState({
+    await this.setState({
       parray : [1],
       currentpage : 1
     })
   }
-
     this.ChangeMovies()
+  }
+
+  Handlepage = async (pageno) => {
+    await this.setState({
+      currentpage : pageno
+    })
+
+    this.ChangeMovies();
   }
 
   render() {
@@ -86,7 +93,7 @@ export default class Movies extends Component {
                     alt=""
                   />
                   <div style={{ display: "flex", justifyContent: "center" }}>
-                    <h5 className="card-title movie-title">{movieObj.title}</h5>
+                    <h4 className="card-title movie-title">{movieObj.title}</h4>
                   </div>
                   {/* <p className="card-text movie-text">{movieObj.desc}</p> */}
                   <div className="btn-wrapper text-center">
@@ -106,7 +113,7 @@ export default class Movies extends Component {
               <li class="page-item pre-next page-link" onClick={this.HandleLeft}>Previous</li>
               {
                 this.state.parray.map((value) => {
-                  return <li class="page-item page-link">{value}</li>
+                  return <li class="page-item page-link pre-next" onClick={() => this.Handlepage(value)}>{value}</li>
                 })
               }
               <li class="page-item pre-next page-link" onClick={this.HandleRight}>Next</li>

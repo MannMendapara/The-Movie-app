@@ -65,7 +65,10 @@
 }
 
 .banner-title {
-  color: red;
+  background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white;
+    backdrop-filter: blur(10px);
   position: absolute;
   top: 25rem;
   left: 1.5rem;
@@ -88,8 +91,8 @@
 
 .movie-card {
   width: 22vw;
-  height: 43vh;
-  color: red;
+  height: 40vh;
+  color: white;
   margin: .5rem;
 }
 
@@ -100,7 +103,10 @@
 
 .movie-title {
   position: absolute;
-  /* left: 3.7rem; */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: white;
+  backdrop-filter: blur(10px);
   top: 1rem;
   left: 1rem;
 }
@@ -119,7 +125,6 @@
   position: absolute;
   /* left: 3.7rem; */
   top: 16rem;
-  background-color: grey;
 }
 
 .pagenavigator{
@@ -153,7 +158,7 @@
   }
 
   .banner-title {
-    color: red;
+    color: white;
     position: absolute;
     top: 8rem;
     left: 15px;
@@ -179,7 +184,7 @@
     width: 40vw;
     height: 30vh;
     margin: .2rem;
-    color: red;
+    color: white;
   }
 
   .movie-img {
