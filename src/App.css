@@ -43,9 +43,14 @@
   justify-content: left;
 }
 
+.banner-cnt{
+  display: flex;
+  justify-content: center;
+}
+
 .banner {
-  width: 100vw;
-  height: 68vh;
+  width: 98vw;
+  height: 73vh;
   position: relative;
   margin-top: 1vh;
   margin-bottom: 3vh;
@@ -55,21 +60,21 @@
 }
 
 .banner-img {
-  height: 68vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 .banner-title {
   color: red;
   position: absolute;
-  top: 18rem;
+  top: 25rem;
   left: 1.5rem;
 }
 
 .banner-text {
   color: aliceblue;
   position: absolute;
-  top: 20.5rem;
+  top: 27rem;
   left: 1.5rem;
   overflow: hidden;
 }
@@ -78,24 +83,26 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 1rem;
+  padding: .5rem;
 }
 
 .movie-card {
-  width: 20vw;
-  margin: .6rem;
+  width: 22vw;
+  height: 43vh;
   color: red;
+  margin: .5rem;
 }
 
 .movie-img {
-  height: 40vh;
-  width: 20vw;
+  height: 100%;
+  width: 100%;
 }
 
 .movie-title {
   position: absolute;
   /* left: 3.7rem; */
-  top: 13rem;
+  top: 1rem;
+  left: 1rem;
 }
 
 .btn-wrapper{
@@ -107,17 +114,22 @@
 
 .btn {
   margin-bottom: 5px;
-  width: 50%;
+  width: 30%;
   font-size: 1rem;
   position: absolute;
   /* left: 3.7rem; */
   top: 16rem;
+  background-color: grey;
 }
 
 .pagenavigator{
   display:flex;
   justify-content: center;
   width: 100%;
+}
+
+.pre-next:hover{
+  cursor: pointer;
 }
 
 
@@ -178,7 +190,7 @@
   .movie-title {
     position: absolute;
     /* left: 3.7rem; */
-    top: 8rem;
+    top: .6rem;
     font-size: 15px;
   }
 

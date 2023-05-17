@@ -1,145 +1,115 @@
 import React, { Component } from "react";
-let movies = [
-  {
-    name: "FF1",
-    url: "https://images.justwatch.com/backdrop/39788434/s640",
-    desc: "Jeu possedera cavaliers carabines apprendre peu ces regiments. Puisque jaillir lui desolee comprit moi galoper jeu ton. Eux piquette ouvriers exaltait traverse fin cavalier par eau. Elue suis eau meme tous vert une tout. Toujours les appareil pic peu dressait debouche fer aisselle cherirai. Dehors ou tu repris wagons tracer en ne. Filles tu pu ouvert puisqu or. Legerement en electrique magistrats la or diplomates. Attenua falloir entendu eclaire peu nations grosses foi. Ces defoncat refletez mur etrangle vif treillis musiques.",
-  },
-  {
-    name: "Harry Potter",
-    url: "https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/05/Harry-Potter-Movies-in-Order.jpg",
-    desc: "Jeu possedera cavaliers carabines apprendre peu ces regiments. Puisque jaillir lui desolee comprit moi galoper jeu ton. Eux piquette ouvriers exaltait traverse fin cavalier par eau. Elue suis eau meme tous vert une tout. Toujours les appareil pic peu dressait debouche fer aisselle cherirai. Dehors ou tu repris wagons tracer en ne. Filles tu pu ouvert puisqu or. Legerement en electrique magistrats la or diplomates. Attenua falloir entendu eclaire peu nations grosses foi. Ces defoncat refletez mur etrangle vif treillis musiques.",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "Elephant wishper",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  },
-  {
-    name: "The Kerela story",
-    url:" ",
-    desc: " ",
-  }
-];
+import axios from 'axios'
 export default class Movies extends Component {
+  constructor() {
+    super();
+    this.state = { 
+      hover : "",
+      parray : [1], 
+      currentpage : 1,
+      movies : []
+    };
+  }
+  async componentDidMount(){
+    const req = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=5f829cb9eb36c7179b9076fa5cc2e5b8&page=${this.state.currentpage}`)
+    const data = req.data
+    console.log(data)
+    this.setState({
+      movies: [...data.results]
+    })
+  }
+
+   ChangeMovies = async () => {
+    const req = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=5f829cb9eb36c7179b9076fa5cc2e5b8&page=${this.state.currentpage}`)
+    const data = req.data
+    // console.log(data)
+    this.setState({
+      movies: [...data.results]
+    })
+  }
+
+  HandleRight = async () => {
+
+    let temparr = []
+
+    for(let i = 1; i <= this.state.parray.length + 1; i++){
+      temparr.push(i)
+    }
+    
+    await this.setState({
+      parray : [...temparr],
+      currentpage : this.state.currentpage + 1
+    })
+
+    this.ChangeMovies();
+  }
+
+  HandleLeft = async () => {
+
+    if(this.state.currentpage > 1) {
+    let temparr = []
+
+    for(let i = 1; i < this.state.currentpage; i++){
+      temparr.push(i)
+    }
+    
+    await this.setState({
+      parray: [...temparr],
+      currentpage: this.state.currentpage - 1
+    })
+  }else{
+    this.setState({
+      parray : [1],
+      currentpage : 1
+    })
+  }
+
+    this.ChangeMovies()
+  }
+
   render() {
     return (
       <div>
-        <h3 className="text-center">Trending</h3>
+        <h2 className="text-center">Popular</h2>
         <div className="movie-cnt">
-        {movies === [] ? (
-          <div class="spinner-border text-primary" role="status">
-            <span className="sr-only"></span>
-          </div>
-        ) : (
-          movies.map((movieObj) => {
-            return (
-            <div className="card movie-card">
-              <img
-                src={movieObj.url}
-                className="card-img-top movie-img"
-                alt=""
-              />
-              <div style={{display:"flex", justifyContent:"center"}}>
-              <h3 className="card-title movie-title">{movieObj.name}</h3>
-              </div>
-              {/* <p className="card-text movie-text">{movieObj.desc}</p> */}
-              <div className="btn-wrapper text-center">
-              <a href=" " className="btn btn-primary text-center"> favorite </a>
-              </div>
+          {this.state.movies.length === 0 ? (
+            <div class="spinner-border text-primary" role="status">
+              <span className="sr-only"></span>
             </div>
-            )
-          })
-        )}
+          ) : (
+            this.state.movies.map((movieObj) => {
+              return (
+                <div className="card movie-card" onMouseEnter={() => this.setState({ hover: movieObj.id })} onMouseLeave={() => this.setState({ hover: "" })}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/original${movieObj.backdrop_path}`}
+                    className="card-img-top movie-img"
+                    alt=""
+                  />
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <h5 className="card-title movie-title">{movieObj.title}</h5>
+                  </div>
+                  {/* <p className="card-text movie-text">{movieObj.desc}</p> */}
+                  <div className="btn-wrapper text-center">
+                    {
+                      this.state.hover === movieObj.id &&
+                      <a href=" " className="btn btn-primary text-center"> favorite </a>
+                    }
+                  </div>
+                </div>
+              )
+            })
+          )}
         </div>
         <div className="pagenavigator">
           <nav aria-label="Page navigation example">
             <ul class="pagination">
-              <li class="page-item"><a class="page-link" href=" ">Previous</a></li>
-              <li class="page-item"><a class="page-link" href=" ">1</a></li>
-              <li class="page-item"><a class="page-link" href=" ">2</a></li>
-              <li class="page-item"><a class="page-link" href=" ">3</a></li>
-              <li class="page-item"><a class="page-link" href=" ">Next</a></li>
+              <li class="page-item pre-next page-link" onClick={this.HandleLeft}>Previous</li>
+              {
+                this.state.parray.map((value) => {
+                  return <li class="page-item page-link">{value}</li>
+                })
+              }
+              <li class="page-item pre-next page-link" onClick={this.HandleRight}>Next</li>
             </ul>
           </nav>
         </div>
