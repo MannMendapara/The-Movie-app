@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-
+const Genresdata = { 28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime", 99: "Documentary", 18: "Drama", 14: "Fantasy", 27: "Horror", 878: "Sci-Fi", 53: "Thriller", }
 export default class favourite extends Component {
 
   constructor() {
     super();
     this.state = {
-      movies: []
+      movies: [],
+      genres: [],
+      currentGenres: "All Genres"
     };
   }
   async componentDidMount() {
@@ -18,33 +20,66 @@ export default class favourite extends Component {
     })
   }
 
+  // HandleGenrs = async (genrename) => {
+  //   const genremovie = []
+  //   this.state.movies.forEach((movieObj) => {
+  //     if(genrename === (Genresdata[movieObj.genre_ids[0]] === undefined ? (Genresdata[movieObj.genre_ids[1]] === undefined ? Genresdata[movieObj.genre_ids[2]] : Genresdata[movieObj.genre_ids[1]]) : Genresdata[movieObj.genre_ids[0]])){
+  //       genremovie.push(movieObj)
+  //     }
+  //   })
+
+  //   this.setState({
+  //     movies: [...genremovie],
+  //     currentGenres : genrename
+  //   })
+  // }
+
   render() {
+    const temp = []
+    this.state.movies.forEach((movieObj) => {
+      if (!temp.includes(Genresdata[movieObj.genre_ids[0]] === undefined ? (Genresdata[movieObj.genre_ids[1]] === undefined ? Genresdata[movieObj.genre_ids[2]] : Genresdata[movieObj.genre_ids[1]]) : Genresdata[movieObj.genre_ids[0]])) {
+        temp.push(Genresdata[movieObj.genre_ids[0]] === undefined ? (Genresdata[movieObj.genre_ids[1]] === undefined ? Genresdata[movieObj.genre_ids[2]] : Genresdata[movieObj.genre_ids[1]]) : Genresdata[movieObj.genre_ids[0]])
+      }
+    });
+
+    temp.unshift("All Genres")
+
+    this.setState({
+      genres: [...temp]
+    })
+
     return (
       <>
         <div className='main'>
           <div className='row'>
-            <div className='col-3'>
-              <ul className="list-group">
-                <li className="list-group-item">An item</li>
-                <li className="list-group-item">A second item</li>
-                <li className="list-group-item">A third item</li>
-                <li className="list-group-item">A fourth item</li>
-                <li className="list-group-item">And a fifth one</li>
+            <div className='col-2 Genres-col'>
+              <ul className="list-group Genres-cnt">
+                {
+                  this.state.genres.map((movieObj) => {
+                    return (
+                      this.state.currentGenres === movieObj ?
+                        <li className="list-group-item Genres-name" style={{backgroundColor: "rgb(108, 108, 195)",color: "white"}}>{movieObj}</li> :
+                        (<li className="list-group-item Genres-name">{movieObj}</li>)
+                    )
+                  })
+                }
               </ul>
             </div>
-            <div className='col-9'>
-              <div className='row'>
-                <input type='text' className='input-group col'></input>
-                <input type='number' className='input-group col'></input>
+            <div className='col-10'>
+              <div className='row input-cnt'>
+                <input type='text' className='input-group col input' placeholder='search'></input>
+                <input type='number' className='input-group col input' placeholder='number'></input>
               </div>
               <div className='row'>
                 <table className="table">
                   <thead>
                     <tr>
+                      <th scope="col"></th>
                       <th scope="col">Title</th>
                       <th scope="col">Genres</th>
                       <th scope="col">Popularity</th>
                       <th scope="col">Rating</th>
+                      <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -52,10 +87,17 @@ export default class favourite extends Component {
                       this.state.movies.map((movieObj) => {
                         return (
                           <tr>
-                            <th scope="row">{movieObj.title}</th>
-                            <td></td>
+                            <td><img src={`https://image.tmdb.org/t/p/original${movieObj.backdrop_path}`} alt='...' style={{
+                              height: "45px",
+                              width: "70px"
+                            }} /></td>
+                            <td>{movieObj.title}</td>
+                            <td>{
+                              Genresdata[movieObj.genre_ids[0]] === undefined ? (Genresdata[movieObj.genre_ids[1]] === undefined ? Genresdata[movieObj.genre_ids[2]] : Genresdata[movieObj.genre_ids[1]]) : Genresdata[movieObj.genre_ids[0]]
+                            }</td>
                             <td>{movieObj.popularity}</td>
                             <td>{movieObj.vote_average}</td>
+                            <td><button type="button" className='fav-btn'>click</button></td>
                           </tr>
                         )
                       })

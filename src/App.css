@@ -43,6 +43,12 @@
   justify-content: left;
 }
 
+.nav:hover{
+  cursor: pointer;
+  background-color: rgb(207, 207, 207);
+  border-radius: 5px;
+}
+
 .banner-cnt{
   display: flex;
   justify-content: center;
@@ -75,6 +81,10 @@
 }
 
 .banner-text {
+  background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white;
+    backdrop-filter: blur(10px);
   color: aliceblue;
   position: absolute;
   top: 27rem;
@@ -135,6 +145,28 @@
 
 .pre-next:hover{
   cursor: pointer;
+}
+
+.Genres-col{
+  padding: 3rem;
+  padding-top: 0;
+  padding-left: 2rem;
+  margin-top: 1rem;
+}
+
+.Genres-name:hover{
+  cursor: pointer;
+  font-size: 1.2rem;
+  background-color: rgb(108, 108, 195);
+  color:white;
+}
+
+.input-cnt{
+  margin-bottom: 1rem;
+}
+
+.input{
+  margin-left: .5rem;
 }
 
 

@@ -7,13 +7,14 @@ export default class Movies extends Component {
       hover : "",
       parray : [1], 
       currentpage : 1,
-      movies : []
+      movies : [],
+      favorite : []
     };
   }
   async componentDidMount(){
     const req = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=5f829cb9eb36c7179b9076fa5cc2e5b8&page=${this.state.currentpage}`)
     const data = req.data
-    console.log(data)
+    // console.log(data)
     this.setState({
       movies: [...data.results]
     })
@@ -74,6 +75,28 @@ export default class Movies extends Component {
     this.ChangeMovies();
   }
 
+  HandleFav = async (moviedata) => {
+    let olddata = await JSON.parse(localStorage.getItem("movies-app") || '[]')
+    
+    if(this.state.favorite.includes(moviedata.id)){
+      olddata = await olddata.filter(users => users.id !== moviedata.id)
+    }else{
+      olddata.push(moviedata)
+    }
+    await localStorage.setItem("movies-app",JSON.stringify(olddata))
+    
+    this.HandleFavState()
+  }
+
+  HandleFavState = async () => {
+    let olddata = JSON.parse(localStorage.getItem("movies-app") || '[]')
+    let temp = olddata.map((movieObj) => movieObj.id)
+
+    this.setState({
+      favorite : [...temp]
+    })
+  }
+
   render() {
     return (
       <div>
@@ -99,7 +122,7 @@ export default class Movies extends Component {
                   <div className="btn-wrapper text-center">
                     {
                       this.state.hover === movieObj.id &&
-                      <a href=" " className="btn btn-primary text-center"> favorite </a>
+                      <button className="btn btn-primary text-center" onClick={() => this.HandleFav(movieObj)}> favorite </button>
                     }
                   </div>
                 </div>
