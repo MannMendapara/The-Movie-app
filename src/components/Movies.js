@@ -122,7 +122,9 @@ export default class Movies extends Component {
                   <div className="btn-wrapper text-center">
                     {
                       this.state.hover === movieObj.id &&
-                      <button className="btn btn-primary text-center" onClick={() => this.HandleFav(movieObj)}> favorite </button>
+                      <button className="btn btn-primary text-center" onClick={() => this.HandleFav(movieObj)}> {
+                      this.state.favorite.includes(movieObj.id) ? "Remove" : "Favorite"
+                      } </button>
                     }
                   </div>
                 </div>

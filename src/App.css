@@ -155,7 +155,6 @@
 }
 
 .Genres-name:hover{
-  cursor: pointer;
   font-size: 1.2rem;
   background-color: rgb(108, 108, 195);
   color:white;

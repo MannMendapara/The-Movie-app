@@ -3,7 +3,7 @@ import React from 'react';
 import Banners from './components/Banners';
 import Navbar from './components/Navbar';
 import Movies from './components/Movies';
-import Favourite from './components/Favourite';
+import Favorite from './components/Favourite';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" Component={Home} />
-        <Route path="/favorite" element={<Favourite />} />
+        <Route path="/favorite" element={<Favorite />} />
       </Routes>
     </Router>
   );
