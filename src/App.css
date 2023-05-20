@@ -165,7 +165,39 @@
 }
 
 .input{
+  height: 2rem;
+  font-size: 1rem;
+}
+
+.num-input{
+  border-radius: 3px;
+  border: 1px solid black;
+  margin-right: 1rem;
   margin-left: .5rem;
+  outline: none;
+}
+
+.col-8{
+  border: 1px solid black;
+  display: flex;
+  justify-content: left;
+  border-radius: 3px;
+}
+
+.search-icon{
+  height: 2rem;
+  padding-top: 8px;
+  border-right: none;
+  padding-left: 0.10rem;
+  padding-right: 0.18rem;
+}
+
+.movie-input{
+  border: none;
+  border-left: none;
+  padding-left: 0.30rem;
+  padding-bottom: 4px;
+  outline: none;
 }
 
 .sort-indicator:hover{
@@ -182,6 +214,7 @@
   font-size: 20px;
   color: red;
 }
+
 
 
 @media screen and (max-width:400px) {

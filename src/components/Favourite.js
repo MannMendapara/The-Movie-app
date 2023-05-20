@@ -9,7 +9,9 @@ export default class favourite extends Component {
       movies: [],
       genres: [],
       currentGenres: "All Genres",
-      currentText: ''
+      currentText: '',
+      limit: 10,
+      currentpage: 1
     };
   }
 
@@ -102,9 +104,16 @@ export default class favourite extends Component {
     })
   }
 
-  render() {
-    let filterarr = this.state.movies;
+  HandlePagination = async (page) => {
+    await this.setState({
+      currentpage: page
+    })
+  }
 
+
+  render() {
+
+    let filterarr = this.state.movies;
     if (this.state.currentText === '') {
       filterarr = this.state.movies
     } else {
@@ -114,9 +123,21 @@ export default class favourite extends Component {
       })
     }
 
+
     if (this.state.currentGenres !== 'All Genres') {
       filterarr = this.state.movies.filter((movieObj) => this.state.currentGenres === (Genresdata[movieObj.genre_ids[0]] === undefined ? (Genresdata[movieObj.genre_ids[1]] === undefined ? Genresdata[movieObj.genre_ids[2]] : Genresdata[movieObj.genre_ids[1]]) : Genresdata[movieObj.genre_ids[0]]))
     }
+
+
+    let pages = Math.ceil(filterarr.length / this.state.limit)
+    let pagearray = [];
+    for (let i = 1; i <= pages; i++) {
+      pagearray.push(i)
+    }
+    const strind = (this.state.currentpage - 1) * this.state.limit
+    const endind = strind + this.state.limit
+    filterarr = filterarr.slice(strind, endind)
+
     return (
       <>
         <div className='main'>
@@ -136,8 +157,11 @@ export default class favourite extends Component {
             </div>
             <div className='col-10'>
               <div className='row input-cnt'>
-                <input type='text' className='input-group col input' placeholder='search' value={this.state.currentText} onChange={(e) => this.setState({ currentText: e.target.value })}></input>
-                <input type='number' className='input-group col input' placeholder='number'></input>
+                <div className='col-8'>
+                  <i className="fa-solid fa-magnifying-glass search-icon"></i>
+                  <input type='text' className='input-group input movie-input' placeholder='search' value={this.state.currentText} onChange={(e) => this.setState({ currentText: e.target.value })}></input>
+                </div>
+                <input type='number' className='col input-group input num-input' placeholder='number' value={this.state.limit} onChange={(e) => this.state.limit > 1 ? this.setState({ limit: e.target.value }) : this.setState({ limit: 1 })}></input>
               </div>
               <div className='row'>
                 <table className="table">
@@ -175,10 +199,12 @@ export default class favourite extends Component {
                 </table>
               </div>
               <nav aria-label="Page navigation example">
-                <ul className="pagination">
-                  <li className="page-item"><a className="page-link" href=" ">1</a></li>
-                  <li className="page-item"><a className="page-link" href=" ">2</a></li>
-                  <li className="page-item"><a className="page-link" href=" ">3</a></li>
+                <ul className="pagination pre-next">
+                  {
+                    pagearray.map((pageno) => {
+                      return <li className="page-item" onClick={() => this.HandlePagination(pageno)}><div className="page-link">{pageno}</div></li>
+                    })
+                  }
                 </ul>
               </nav>
             </div>
