@@ -168,6 +168,21 @@
   margin-left: .5rem;
 }
 
+.sort-indicator:hover{
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn-remove{
+  border: none;
+  background-color: rgb(255, 255, 255);
+}
+
+.btn-remove:hover{
+  font-size: 20px;
+  color: red;
+}
+
 
 @media screen and (max-width:400px) {
 

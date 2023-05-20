@@ -8,7 +8,8 @@ export default class favourite extends Component {
     this.state = {
       movies: [],
       genres: [],
-      currentGenres: "All Genres"
+      currentGenres: "All Genres",
+      currentText: ''
     };
   }
 
@@ -50,6 +51,8 @@ export default class favourite extends Component {
       if (moviedata.id !== movie.id) {
         temp.push(movie)
       }
+
+      return true
     })
 
     localStorage.setItem('movies-app', JSON.stringify(temp))
@@ -59,15 +62,61 @@ export default class favourite extends Component {
     })
   }
 
-  render() {
-    let filterarr = [];
+  SortPopDesc = async () => {
+    let temp = this.state.movies
+    temp.sort((ObjA, ObjB) => {
+      return (ObjB.popularity - ObjA.popularity)
+    })
+    await this.setState({
+      movies: [...temp]
+    })
+  }
 
-    if (this.state.currentGenres === 'All Genres') {
+  SortPopAsc = async () => {
+    let temp = this.state.movies
+    temp.sort((ObjA, ObjB) => {
+      return (ObjA.popularity - ObjB.popularity)
+    })
+    await this.setState({
+      movies: [...temp]
+    })
+  }
+
+  SortRatDesc = async () => {
+    let temp = this.state.movies
+    temp.sort((ObjA, ObjB) => {
+      return (ObjB.vote_average - ObjA.vote_average)
+    })
+    await this.setState({
+      movies: [...temp]
+    })
+  }
+
+  SortRatAsc = async () => {
+    let temp = this.state.movies
+    temp.sort((ObjA, ObjB) => {
+      return (ObjA.vote_average - ObjB.vote_average)
+    })
+    await this.setState({
+      movies: [...temp]
+    })
+  }
+
+  render() {
+    let filterarr = this.state.movies;
+
+    if (this.state.currentText === '') {
       filterarr = this.state.movies
     } else {
-      filterarr = this.state.movies.filter((movieObj) => this.state.currentGenres === (Genresdata[movieObj.genre_ids[0]] === undefined ? (Genresdata[movieObj.genre_ids[1]] === undefined ? Genresdata[movieObj.genre_ids[2]] : Genresdata[movieObj.genre_ids[1]]) : Genresdata[movieObj.genre_ids[0]]))
+      filterarr = this.state.movies.filter((movieObj) => {
+        let title = movieObj.title.toLowerCase()
+        return title.includes(this.state.currentText.toLowerCase())
+      })
     }
 
+    if (this.state.currentGenres !== 'All Genres') {
+      filterarr = this.state.movies.filter((movieObj) => this.state.currentGenres === (Genresdata[movieObj.genre_ids[0]] === undefined ? (Genresdata[movieObj.genre_ids[1]] === undefined ? Genresdata[movieObj.genre_ids[2]] : Genresdata[movieObj.genre_ids[1]]) : Genresdata[movieObj.genre_ids[0]]))
+    }
     return (
       <>
         <div className='main'>
@@ -87,7 +136,7 @@ export default class favourite extends Component {
             </div>
             <div className='col-10'>
               <div className='row input-cnt'>
-                <input type='text' className='input-group col input' placeholder='search'></input>
+                <input type='text' className='input-group col input' placeholder='search' value={this.state.currentText} onChange={(e) => this.setState({ currentText: e.target.value })}></input>
                 <input type='number' className='input-group col input' placeholder='number'></input>
               </div>
               <div className='row'>
@@ -97,8 +146,8 @@ export default class favourite extends Component {
                       <th scope="col"></th>
                       <th scope="col">Title</th>
                       <th scope="col">Genres</th>
-                      <th scope="col">Popularity</th>
-                      <th scope="col">Rating</th>
+                      <th scope="col">Popularity <i className="fa-sharp fa-solid fa-caret-up sort-indicator" onClick={this.SortPopDesc}></i> <i className="fa-sharp fa-solid fa-caret-down sort-indicator" onClick={this.SortPopAsc}></i> </th>
+                      <th scope="col">Rating <i className="fa-sharp fa-solid fa-caret-up sort-indicator" onClick={this.SortRatDesc}></i> <i className="fa-sharp fa-solid fa-caret-down sort-indicator" onClick={this.SortRatAsc}></i> </th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -113,11 +162,11 @@ export default class favourite extends Component {
                             }} /></td>
                             <td>{movieObj.title}</td>
                             <td>{
-                              Genresdata[movieObj.genre_ids[0]] === undefined ? (Genresdata[movieObj.genre_ids[1]] === undefined ? Genresdata[movieObj.genre_ids[2]] : Genresdata[movieObj.genre_ids[1]]) : Genresdata[movieObj.genre_ids[0]]
+                              (Genresdata[movieObj.genre_ids[0]] === undefined ? (Genresdata[movieObj.genre_ids[1]] === undefined ? Genresdata[movieObj.genre_ids[2]] : Genresdata[movieObj.genre_ids[1]]) : Genresdata[movieObj.genre_ids[0]])
                             }</td>
                             <td>{movieObj.popularity}</td>
                             <td>{movieObj.vote_average}</td>
-                            <td><button type="button" className='fav-btn' onClick={() => this.DeleteFav(movieObj)}>Remove</button></td>
+                            <td><button type="button" className='fav-btn btn-remove' onClick={() => this.DeleteFav(movieObj)}><i className="fa-solid fa-trash"></i></button></td>
                           </tr>
                         )
                       })
