@@ -10,7 +10,7 @@ export default class favourite extends Component {
       genres: [],
       currentGenres: "All Genres",
       currentText: '',
-      limit: 10,
+      limit: 8,
       currentpage: 1
     };
   }
