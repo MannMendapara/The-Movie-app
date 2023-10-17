@@ -222,7 +222,7 @@
   .navigoter{
     height: 3.5rem;
     display: flex;
-    justify-content: left;
+    justify-content: space-around;
     font-size: 20px;
   }
 
