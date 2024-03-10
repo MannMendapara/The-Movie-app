@@ -139,7 +139,7 @@ export default class favourite extends Component {
     filterarr = filterarr.slice(strind, endind)
 
     return (
-      <>
+      <div style={{paddingTop:"6rem"}}>
         <div className='main'>
           <div className='row'>
             <div className='col-2 Genres-col'>
@@ -210,7 +210,7 @@ export default class favourite extends Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
     )
   }
 }

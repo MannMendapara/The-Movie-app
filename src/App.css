@@ -1,68 +1,46 @@
-/* .App {
-  text-align: center;
+.body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
 
 .navigoter {
   height: 5rem;
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
+  background-color: rgb(243, 243, 243);
+  position: fixed;
+  z-index: 2;
+  width: 100%;
 }
 
-.nav:hover{
+.nav {
+  transition: all .4s linear;
+  margin-bottom: 0.5rem;
+  padding: 0.1rem 0.5rem;
+}
+
+.nav:hover {
   cursor: pointer;
-  background-color: rgb(207, 207, 207);
-  border-radius: 5px;
+  background-color: #e1e7ea;
+  border-radius: 10px;
 }
 
-.banner-cnt{
+.banner-cnt {
   display: flex;
   justify-content: center;
+  padding-top: 5rem;
 }
 
 .banner {
   width: 98vw;
-  height: 73vh;
+  height: 77vh;
   position: relative;
   margin-top: 1vh;
   margin-bottom: 3vh;
   color: aliceblue;
-  margin-left: .5rem;
-  margin-right: .5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .banner-img {
@@ -70,40 +48,28 @@
   width: 100%;
 }
 
-.banner-title {
-  background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: white;
-    backdrop-filter: blur(10px);
+.card-data {
   position: absolute;
-  top: 25rem;
+  bottom: 1.5rem;
   left: 1.5rem;
-}
-
-.banner-text {
   background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: white;
-    backdrop-filter: blur(10px);
-  color: aliceblue;
-  position: absolute;
-  top: 27rem;
-  left: 1.5rem;
-  overflow: hidden;
-}
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: white;
+  backdrop-filter: blur(10px);
+} 
 
 .movie-cnt {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .movie-card {
   width: 22vw;
   height: 40vh;
   color: white;
-  margin: .5rem;
+  margin: 0.5rem;
 }
 
 .movie-img {
@@ -121,9 +87,9 @@
   left: 1rem;
 }
 
-.btn-wrapper{
-  display:flex;
-  width:100%;
+.btn-wrapper {
+  display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -133,93 +99,95 @@
   width: 30%;
   font-size: 1rem;
   position: absolute;
-  /* left: 3.7rem; */
-  top: 16rem;
+  top: 14rem;
+  background-color: #e84393;
+  border: none;
 }
 
-.pagenavigator{
-  display:flex;
+.btn:hover {
+  background-color: #fd79a8;
+}
+
+.pagenavigator {
+  display: flex;
   justify-content: center;
   width: 100%;
 }
 
-.pre-next:hover{
+.pre-next:hover {
   cursor: pointer;
 }
 
-.Genres-col{
+.Genres-col {
   padding: 3rem;
   padding-top: 0;
   padding-left: 2rem;
   margin-top: 1rem;
 }
 
-.Genres-name:hover{
+.Genres-name:hover {
   font-size: 1.2rem;
   background-color: rgb(108, 108, 195);
-  color:white;
+  color: white;
 }
 
-.input-cnt{
+.input-cnt {
   margin-bottom: 1rem;
 }
 
-.input{
+.input {
   height: 2rem;
   font-size: 1rem;
 }
 
-.num-input{
+.num-input {
   border-radius: 3px;
   border: 1px solid black;
   margin-right: 1rem;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   outline: none;
 }
 
-.col-8{
+.col-8 {
   border: 1px solid black;
   display: flex;
   justify-content: left;
   border-radius: 3px;
 }
 
-.search-icon{
+.search-icon {
   height: 2rem;
   padding-top: 8px;
   border-right: none;
-  padding-left: 0.10rem;
+  padding-left: 0.1rem;
   padding-right: 0.18rem;
 }
 
-.movie-input{
+.movie-input {
   border: none;
   border-left: none;
-  padding-left: 0.30rem;
+  padding-left: 0.3rem;
   padding-bottom: 4px;
   outline: none;
 }
 
-.sort-indicator:hover{
+.sort-indicator:hover {
   font-size: 20px;
   cursor: pointer;
 }
 
-.btn-remove{
+.btn-remove {
   border: none;
   background-color: rgb(255, 255, 255);
 }
 
-.btn-remove:hover{
+.btn-remove:hover {
   font-size: 20px;
   color: red;
 }
 
-
-
-@media screen and (max-width:400px) {
-
-  .navigoter{
+@media screen and (max-width: 400px) {
+  .navigoter {
     height: 3.5rem;
     display: flex;
     justify-content: space-around;
@@ -228,8 +196,8 @@
 
   .banner {
     height: 40vh;
-    margin-left: .1rem;
-    margin-right: .1rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
   }
 
   .banner-img {
@@ -256,13 +224,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: .1rem;
+    padding: 0.1rem;
   }
 
   .movie-card {
     width: 40vw;
     height: 30vh;
-    margin: .2rem;
+    margin: 0.2rem;
     color: white;
   }
 
@@ -274,13 +242,13 @@
   .movie-title {
     position: absolute;
     /* left: 3.7rem; */
-    top: .6rem;
+    top: 0.6rem;
     font-size: 15px;
   }
 
-  .btn-wrapper{
-    display:flex;
-    width:100%;
+  .btn-wrapper {
+    display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
   }
@@ -295,7 +263,7 @@
     font-size: 13px;
   }
 
-  .pagenavigator{
-    margin-top: .4rem;
+  .pagenavigator {
+    margin-top: 0.4rem;
   }
 }
