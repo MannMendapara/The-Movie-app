@@ -104,13 +104,13 @@ export default class Movies extends Component {
         <h2 className="text-center">Popular</h2>
         <div className="movie-cnt">
           {this.state.movies.length === 0 ? (
-            <div class="spinner-border text-primary" role="status">
+            <div className="spinner-border text-primary" role="status">
               <span className="sr-only"></span>
             </div>
           ) : (
-            this.state.movies.map((movieObj) => {
+            this.state.movies.map((movieObj,i) => {
               return (
-                <div className="card movie-card" onMouseEnter={() => this.setState({ hover: movieObj.id })} onMouseLeave={() => this.setState({ hover: "" })}>
+                <div className="card movie-card" key={i} onMouseEnter={() => this.setState({ hover: movieObj.id })} onMouseLeave={() => this.setState({ hover: "" })}>
                   <img
                     src={`https://image.tmdb.org/t/p/original${movieObj.backdrop_path}`}
                     className="card-img-top movie-img"
@@ -135,14 +135,14 @@ export default class Movies extends Component {
         </div>
         <div className="pagenavigator">
           <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item pre-next page-link" onClick={this.HandleLeft}>Previous</li>
+            <ul className="pagination">
+              <li className="page-item pre-next page-link" onClick={this.HandleLeft}>Previous</li>
               {
-                this.state.parray.map((value) => {
-                  return <li class="page-item page-link pre-next" onClick={() => this.Handlepage(value)}>{value}</li>
+                this.state.parray.map((value,i) => {
+                  return <li className="page-item page-link pre-next" key={i} onClick={() => this.Handlepage(value)}>{value}</li>
                 })
               }
-              <li class="page-item pre-next page-link" onClick={this.HandleRight}>Next</li>
+              <li className="page-item pre-next page-link" onClick={this.HandleRight}>Next</li>
             </ul>
           </nav>
         </div>
